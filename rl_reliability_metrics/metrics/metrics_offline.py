@@ -23,8 +23,8 @@ import abc
 import functools
 import gin
 import numpy as np
-from rl_reliability_metrics.metrics import metric_utils as utils
-from rl_reliability_metrics.metrics import metrics_base
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metric_utils as utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_base
 import scipy.stats
 import six
 

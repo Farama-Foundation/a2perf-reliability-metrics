@@ -24,10 +24,10 @@ training runs (e.g. beginning/middle/end).
 """
 from absl import logging
 import numpy as np
-from rl_reliability_metrics.analysis import data_def
-from rl_reliability_metrics.analysis import io_utils_oss as io_utils
-from rl_reliability_metrics.metrics import metrics_offline
-from rl_reliability_metrics.metrics import metrics_online
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import data_def
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import io_utils_oss as io_utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_offline
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_online
 import scipy.stats
 
 # Internal gfile dependencies

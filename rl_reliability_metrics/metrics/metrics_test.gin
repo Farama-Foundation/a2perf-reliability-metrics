@@ -14,7 +14,7 @@
 # limitations under the License.
 
 #-*-Python-*-
-import rl_reliability_metrics.metrics.metrics_online
+import rl_perf.metrics.reliability.rl_reliability_metrics.metrics.metrics_online
 
 ## Configure default values for metrics
 metrics_online.StddevAcrossRuns.eval_points = [1]

@@ -38,7 +38,7 @@ To run existing unit-tests, use the command:
 python3 setup.py test
 ```
 
-from the root of the `rl_reliability_metrics` repository, ideally inside a
+from the root of the `rl_perf.metrics.reliability.rl_reliability_metrics` repository, ideally inside a
 virtualenv.
 
 ## Contributor License Agreement

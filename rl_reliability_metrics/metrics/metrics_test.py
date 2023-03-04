@@ -21,8 +21,8 @@ from absl import flags
 from absl.testing import parameterized
 import gin
 import numpy as np
-from rl_reliability_metrics.metrics import metrics_base
-from rl_reliability_metrics.metrics import metrics_online
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_base
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_online
 
 import unittest
 

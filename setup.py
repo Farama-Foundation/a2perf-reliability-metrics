@@ -115,8 +115,8 @@ class Test(TestCommandBase):
     return app.run(main)
 
 
-from rl_reliability_metrics.version import __dev_version__  # pylint: disable=g-import-not-at-top
-from rl_reliability_metrics.version import __rel_version__  # pylint: disable=g-import-not-at-top
+from rl_perf.metrics.reliability.rl_reliability_metrics.version import __dev_version__  # pylint: disable=g-import-not-at-top
+from rl_perf.metrics.reliability.rl_reliability_metrics.version import __rel_version__  # pylint: disable=g-import-not-at-top
 
 REQUIRED_PACKAGES = [
     'absl-py >= 0.6.1',

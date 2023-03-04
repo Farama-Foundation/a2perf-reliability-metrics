@@ -22,9 +22,9 @@ determine whether differences between algorithms are statistically significant.
 from absl import app
 from absl import flags
 
-from rl_reliability_metrics.analysis import data_def
-from rl_reliability_metrics.analysis import stats
-from rl_reliability_metrics.examples.tf_agents_mujoco_subset import params as p
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import data_def
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import stats
+from rl_perf.metrics.reliability.rl_reliability_metrics.examples.tf_agents_mujoco_subset import params as p
 
 FLAGS = flags.FLAGS
 

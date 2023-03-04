@@ -17,7 +17,7 @@
 
 from absl.testing import parameterized
 import numpy as np
-from rl_reliability_metrics.analysis import plot_training_curves as ptc
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import plot_training_curves as ptc
 
 import unittest
 

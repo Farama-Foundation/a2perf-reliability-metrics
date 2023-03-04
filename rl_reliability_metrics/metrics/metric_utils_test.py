@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Tests for rl_reliability_metrics.metric_utils."""
+"""Tests for rl_perf.metrics.reliability.rl_reliability_metrics.metric_utils."""
 
 from absl.testing import parameterized
 import numpy as np
-from rl_reliability_metrics.metrics import metric_utils as utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metric_utils as utils
 
 import unittest
 

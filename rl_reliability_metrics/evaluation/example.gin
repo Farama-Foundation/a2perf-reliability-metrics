@@ -14,8 +14,8 @@
 # limitations under the License.
 
 #-*-Python-*-
-import rl_reliability_metrics.evaluation.eval_metrics
-import rl_reliability_metrics.metrics.metrics_online
+import rl_perf.metrics.reliability.rl_reliability_metrics.evaluation.eval_metrics
+import rl_perf.metrics.reliability.rl_reliability_metrics.metrics.metrics_online
 
 # Which metrics are we running -- "During training" metrics only
 METRICS = [@IqrWithinRuns/singleton(),

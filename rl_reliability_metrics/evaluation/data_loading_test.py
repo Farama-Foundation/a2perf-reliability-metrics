@@ -22,7 +22,7 @@ from absl import flags
 from absl.testing import parameterized
 import gin
 import numpy as np
-from rl_reliability_metrics.evaluation import data_loading
+from rl_perf.metrics.reliability.rl_reliability_metrics.evaluation import data_loading
 import tensorflow as tf
 
 import unittest

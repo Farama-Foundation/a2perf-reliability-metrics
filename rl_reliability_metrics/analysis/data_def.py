@@ -20,7 +20,7 @@ import json
 import os
 
 from absl import logging
-from rl_reliability_metrics.analysis import io_utils_oss as io_utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import io_utils_oss as io_utils
 # Internal gfile dependencies
 
 

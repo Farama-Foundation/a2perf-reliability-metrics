@@ -20,8 +20,8 @@ from absl import flags
 from absl.testing import parameterized
 
 import numpy as np
-from rl_reliability_metrics.analysis import data_def
-from rl_reliability_metrics.analysis import stats
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import data_def
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import stats
 
 import unittest
 

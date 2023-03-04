@@ -19,7 +19,7 @@ import csv
 from matplotlib import pyplot as plt
 import numpy as np
 
-from rl_reliability_metrics.analysis import io_utils_oss as io_utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import io_utils_oss as io_utils
 # Internal gfile dependencies
 
 ALGO_COLORS = ('red', 'orange', 'yellow', 'green', 'blue', 'magenta')

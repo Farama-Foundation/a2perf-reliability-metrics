@@ -22,8 +22,8 @@ from absl import logging
 import gin
 import numpy as np
 
-from rl_reliability_metrics.analysis import io_utils_oss as io_utils
-from rl_reliability_metrics.evaluation import data_loading
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import io_utils_oss as io_utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.evaluation import data_loading
 # Internal gfile dependencies
 
 

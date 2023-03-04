@@ -22,9 +22,9 @@ from absl import flags
 from absl.testing import parameterized
 import gin
 import numpy as np
-from rl_reliability_metrics.analysis import io_utils_oss as io_utils
-from rl_reliability_metrics.evaluation import eval_metrics
-from rl_reliability_metrics.metrics import metrics_online
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import io_utils_oss as io_utils
+from rl_perf.metrics.reliability.rl_reliability_metrics.evaluation import eval_metrics
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_online
 
 # Internal gfile dependencies
 import unittest

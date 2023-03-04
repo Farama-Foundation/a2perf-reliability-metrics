@@ -17,7 +17,7 @@
 
 import os
 from absl import flags
-from rl_reliability_metrics.analysis import data_def
+from rl_perf.metrics.reliability.rl_reliability_metrics.analysis import data_def
 
 import unittest
 

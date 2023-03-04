@@ -17,7 +17,7 @@
 
 from absl.testing import parameterized
 import numpy as np
-from rl_reliability_metrics.metrics import metrics_online
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_online
 
 import unittest
 
