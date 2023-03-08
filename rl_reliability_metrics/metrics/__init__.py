@@ -13,3 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics.metrics_offline import *
+from rl_perf.metrics.reliability.rl_reliability_metrics.metrics.metrics_online import *
