@@ -19,7 +19,7 @@ import csv
 
 import numpy as np
 import tensorflow as tf
-
+from absl import logging
 from tensorboard.backend.event_processing import event_accumulator
 
 
@@ -267,6 +267,9 @@ class DataLoader:
     tensor_keys = accumulator.tensors.Keys()
     load_tensors = bool(set(tensor_keys).intersection(summary_name))
 
+    logging.info('Loading summaries from %s', accumulator.path)
+    logging.info('Loading summaries as tensors: %s', load_tensors)
+    logging.info('Loading summaries with names: %s', summary_name)
     # Load summaries -- try each key in the list until the first one that works.
     summaries = None
     for name in summary_name:
