@@ -72,6 +72,7 @@ class Evaluator(object):
         Returns:
           A dictionary of robustness values {metric_name: metric_value}
         """
+        logging.info(f'Attempting to load curves from {run_paths}')
         curves = self.data_loader.load_input_data(run_paths)
         results = self.compute_metrics(curves)
 
