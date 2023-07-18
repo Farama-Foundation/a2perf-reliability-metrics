@@ -80,6 +80,9 @@ class Evaluator(object):
         for k, v in results.items():
             results[k] = dict(values=v)
             results[k]['values'] = np.squeeze(results[k]['values']).tolist()
+            results[k]['mean'] = np.mean(results[k]['values'])
+            results[k]['std'] = np.std(results[k]['values'])
+            results[k]['units'] = 'return'
         return results
 
     def evaluate_with_permutations(
