@@ -35,7 +35,8 @@ class Evaluator(object):
 
     def __init__(self,
                  metrics,
-                 dependent_variable='Metrics/AverageReturn',
+                 subset_size=None,
+                 dependent_variable=None,
                  timepoint_variable=None,
                  align_on_global_step=True):
         """Initialize Evaluator.
@@ -53,6 +54,7 @@ class Evaluator(object):
           align_on_global_step: see load_input_data
         """
         self.metrics = metrics
+        self.subset_size = subset_size
         self.data_loader = data_loading.DataLoader(dependent_variable,
                                                    timepoint_variable,
                                                    align_on_global_step)
@@ -73,11 +75,37 @@ class Evaluator(object):
           A dictionary of robustness values {metric_name: metric_value}
         """
         curves = self.data_loader.load_input_data(run_paths)
+        logging.info('Loaded %d curves', len(curves))
+
+        # Log all of the shapes of original curves.
+        for curve in curves:
+            logging.info('Original Shape: %s', curve.shape)
+
+        # Take a random subset of the curves if desired.
+        if self.subset_size:
+            logging.info('Taking a random subset of size %d', self.subset_size)
+
+            num_eval_points = np.min([curve.shape[1] for curve in curves])
+            logging.info('Number of eval points possible: %d', num_eval_points)
+
+            indices_to_eval = np.random.choice(num_eval_points, self.subset_size, replace=False)
+            logging.info('Indices to evaluate: %s', indices_to_eval)
+
+            curves_subset = [curve[:, indices_to_eval] for curve in curves]
+
+            # Log the shapes of the subset curves
+            for curve in curves_subset:
+                logging.info('Subset Shape: %s', curve.shape)
+
+            curves = curves_subset
         results = self.compute_metrics(curves)
+        logging.info('Successfully computed metrics')
 
         # Convert numpy arrays to lists for JSON serialization.
+        print(results)
         for k, v in results.items():
             results[k] = dict(values=v)
+            print(v)
             results[k]['values'] = np.squeeze(results[k]['values']).tolist()
         return results
 
@@ -222,6 +250,7 @@ class Evaluator(object):
         """Computes metrics on training curves."""
         results = {}
         for metric in self.metrics:
+            logging.info(f'Currently computing metric: {metric.name}')
             results[metric.name] = metric(curves)
         return results
 

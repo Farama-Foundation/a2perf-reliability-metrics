@@ -29,6 +29,7 @@ from rl_perf.metrics.reliability.rl_reliability_metrics.metrics import metrics_b
 import scipy.signal
 import scipy.stats
 import six
+import logging
 
 
 @six.add_metaclass(abc.ABCMeta)
@@ -81,6 +82,12 @@ class _DispersionAcrossRuns(_OnlineMetric):
         self.window_size = window_size
         self.baseline = baseline
 
+        logging.info("dispersion_fn: %s", dispersion_fn)
+        logging.info("lowpass_thresh: %s", lowpass_thresh)
+        logging.info("eval_points: %s", eval_points)
+        logging.info("window_size: %s", window_size)
+        logging.info("baseline: %s", baseline)
+
     def __call__(self, curves):
         """Computes normalized dispersion across runs.
 
@@ -96,7 +103,7 @@ class _DispersionAcrossRuns(_OnlineMetric):
 
         # perform preprocessing for across-runs metrics
         eval_point_values = utils.across_runs_preprocess(
-                curves, self.eval_points, self.window_size, self.lowpass_thresh)
+            curves, self.eval_points, self.window_size, self.lowpass_thresh)
 
         # compute dispersion across curves
         result = self._dispersion_fn(eval_point_values)
@@ -120,11 +127,11 @@ class IqrAcrossRuns(_DispersionAcrossRuns):
                  window_size=None,
                  baseline=None):
         super(IqrAcrossRuns, self).__init__(
-                dispersion_fn=lambda x: scipy.stats.iqr(x, axis=0),
-                lowpass_thresh=lowpass_thresh,
-                eval_points=eval_points,
-                window_size=window_size,
-                baseline=baseline)
+            dispersion_fn=lambda x: scipy.stats.iqr(x, axis=0),
+            lowpass_thresh=lowpass_thresh,
+            eval_points=eval_points,
+            window_size=window_size,
+            baseline=baseline)
 
 
 @gin.configurable
@@ -137,11 +144,11 @@ class MadAcrossRuns(_DispersionAcrossRuns):
                  window_size=None,
                  baseline=None):
         super(MadAcrossRuns, self).__init__(
-                dispersion_fn=lambda x: utils.median_absolute_deviations(x, axis=0),
-                lowpass_thresh=lowpass_thresh,
-                eval_points=eval_points,
-                window_size=window_size,
-                baseline=baseline)
+            dispersion_fn=lambda x: utils.median_absolute_deviations(x, axis=0),
+            lowpass_thresh=lowpass_thresh,
+            eval_points=eval_points,
+            window_size=window_size,
+            baseline=baseline)
 
 
 @gin.configurable
@@ -154,11 +161,11 @@ class StddevAcrossRuns(_DispersionAcrossRuns):
                  window_size=None,
                  baseline=None):
         super(StddevAcrossRuns, self).__init__(
-                dispersion_fn=lambda x: np.std(x, axis=0, ddof=1),
-                lowpass_thresh=lowpass_thresh,
-                eval_points=eval_points,
-                window_size=window_size,
-                baseline=baseline)
+            dispersion_fn=lambda x: np.std(x, axis=0, ddof=1),
+            lowpass_thresh=lowpass_thresh,
+            eval_points=eval_points,
+            window_size=window_size,
+            baseline=baseline)
 
 
 class _DispersionWithinRuns(_OnlineMetric):
@@ -230,7 +237,7 @@ class _DispersionWithinRuns(_OnlineMetric):
 
             # Compute dispersion for the curve.
             diffcurve_dispers = utils.apply_window_fn(
-                    [diff_curve], eval_points, self._dispersion_fn, window_size)
+                [diff_curve], eval_points, self._dispersion_fn, window_size)
 
             if self.baseline == 'curve_range':
                 curve_range = utils.curve_range([curve])[0]
@@ -487,12 +494,12 @@ class LowerCVaROnDiffs(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(LowerCVaROnDiffs, self).__init__(
-                target='diffs',
-                tail='lower',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='diffs',
+            tail='lower',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -503,12 +510,12 @@ class UpperCVaROnDiffs(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(UpperCVaROnDiffs, self).__init__(
-                target='diffs',
-                tail='upper',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='diffs',
+            tail='upper',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -519,12 +526,12 @@ class LowerCVaROnRaw(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(LowerCVaROnRaw, self).__init__(
-                target='raw',
-                tail='lower',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='raw',
+            tail='lower',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -535,12 +542,12 @@ class UpperCVaROnRaw(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(UpperCVaROnRaw, self).__init__(
-                target='raw',
-                tail='upper',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='raw',
+            tail='upper',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -551,12 +558,12 @@ class LowerCVaROnDrawdown(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(LowerCVaROnDrawdown, self).__init__(
-                target='drawdown',
-                tail='lower',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='drawdown',
+            tail='lower',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -567,12 +574,12 @@ class UpperCVaROnDrawdown(_CVaR):
 
     def __init__(self, alpha=0.05, baseline=None):
         super(UpperCVaROnDrawdown, self).__init__(
-                target='drawdown',
-                tail='upper',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=None,
-                eval_points=None)
+            target='drawdown',
+            tail='upper',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=None,
+            eval_points=None)
 
 
 @gin.configurable
@@ -590,13 +597,13 @@ class LowerCVaROnAcross(_CVaR):
                  eval_points=None,
                  window_size=None):
         super(LowerCVaROnAcross, self).__init__(
-                target='across',
-                tail='lower',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=lowpass_thresh,
-                eval_points=eval_points,
-                window_size=window_size)
+            target='across',
+            tail='lower',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=lowpass_thresh,
+            eval_points=eval_points,
+            window_size=window_size)
 
 
 @gin.configurable
@@ -614,13 +621,13 @@ class UpperCVaROnAcross(_CVaR):
                  eval_points=None,
                  window_size=None):
         super(UpperCVaROnAcross, self).__init__(
-                target='across',
-                tail='upper',
-                alpha=alpha,
-                baseline=baseline,
-                lowpass_thresh=lowpass_thresh,
-                eval_points=eval_points,
-                window_size=window_size)
+            target='across',
+            tail='upper',
+            alpha=alpha,
+            baseline=baseline,
+            lowpass_thresh=lowpass_thresh,
+            eval_points=eval_points,
+            window_size=window_size)
 
 
 @gin.configurable
@@ -697,5 +704,5 @@ class MedianPerfDuringTraining(_OnlineMetric):
 
 # Maintain a registry linking metric names to classes.
 REGISTRY = {
-        metric.__name__: metric for metric in all_online_metrics()
-        }
+    metric.__name__: metric for metric in all_online_metrics()
+}
