@@ -3,5 +3,4 @@ matplotlib
 numpy
 scipy
 absl-py
-tensorflow
 tensorboard
