@@ -1,3 +1,5 @@
+**Nov 7, 2025: This project has been deprecated due to a lack of widespread community use, and is no longer planned to receive any additional updates or support.**
+
 # RL Reliability Metrics
 
 The RL Reliability Metrics library provides a set of metrics for measuring the
